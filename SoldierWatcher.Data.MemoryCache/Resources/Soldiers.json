@@ -1,0 +1,62 @@
+[
+  {
+    "Id": "f8aab28d-5c3a-4f97-8b6f-f0c4b560f68f",
+    "Name": "John Smith",
+    "Rank": "Private",
+    "CountryId": "d3d2e0b1-6d8e-4a2e-9fd0-3f9645f9e0b2"
+  },
+  {
+    "Id": "bf77c736-2bda-4b89-9d69-43b1a7c0b7c9",
+    "Name": "Jane Doe",
+    "Rank": "Sergeant",
+    "CountryId": "b32e1f2e-6b44-4b42-8d2e-89d9a5d3675a"
+  },
+  {
+    "Id": "c44a0f95-0a54-4c6b-b9ee-56b2f40e9f8a",
+    "Name": "Carlos Ruiz",
+    "Rank": "Lieutenant",
+    "CountryId": "d3e7d1fc-1b6d-4e37-a1b1-8c5f67f5ab9f"
+  },
+  {
+    "Id": "d2a03e6f-7e63-46cc-8a4d-2f607b7a9f47",
+    "Name": "Anna Müller",
+    "Rank": "Captain",
+    "CountryId": "b32e1f2e-6b44-4b42-8d2e-89d9a5d3675a"
+  },
+  {
+    "Id": "eaa0cda2-24ff-4387-a497-50d527e93f5d",
+    "Name": "Marie Dubois",
+    "Rank": "Major",
+    "CountryId": "a7b1e0cc-c4f7-4c83-9290-9d45b8f6e5da" 
+  },
+  {
+    "Id": "2a0de682-19d1-4a0a-9bfa-6c2d0926c736",
+    "Name": "Robert Johnson",
+    "Rank": "Colonel",
+    "CountryId": "d3d2e0b1-6d8e-4a2e-9fd0-3f9645f9e0b2"
+  },
+  {
+    "Id": "34e8a627-1f44-4b74-b0f0-3f317bce4a14",
+    "Name": "Olivia Brown",
+    "Rank": "General",
+    "CountryId": "b32e1f2e-6b44-4b42-8d2e-89d9a5d3675a"
+  },
+  {
+    "Id": "486e7b9f-7b8e-4b9a-9d6f-11c1b8d6f6a2",
+    "Name": "Giuseppe Rossi",
+    "Rank": "Sergeant",
+    "CountryId": "d3e7d1fc-1b6d-4e37-a1b1-8c5f67f5ab9f"
+  },
+  {
+    "Id": "6d9f9bfb-64da-4c92-80e2-69b7f70943b3",
+    "Name": "Emily White",
+    "Rank": "Lieutenant",
+    "CountryId": "a7b1e0cc-c4f7-4c83-9290-9d45b8f6e5da"
+  },
+  {
+    "Id": "839d8f6c-8d39-4b2a-a657-0d3e7929eaba",
+    "Name": "Liam O'Connor",
+    "Rank": "Private",
+    "CountryId": "d3d2e0b1-6d8e-4a2e-9fd0-3f9645f9e0b2"
+  }
+]

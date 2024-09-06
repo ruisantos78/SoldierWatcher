@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoldierWatcher", "SoldierWatcher\SoldierWatcher.csproj", "{9C9DDB89-45CC-46D5-8C80-8A7FC74192F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{B3F99B69-77B2-4A5A-BEA2-F518F6F59427}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F678411C-5FC3-4835-9331-7BEB1E2E2E33}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoldierWatcher.Data", "SoldierWatcher.Data\SoldierWatcher.Data.csproj", "{948FAFCB-D9B7-449D-8241-4CDD61B87A13}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoldierWatcher.Data.MemoryCache", "SoldierWatcher.Data.MemoryCache\SoldierWatcher.Data.MemoryCache.csproj", "{5B2011A3-F9CC-458D-B17E-FFAA6C401030}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{E235FFBB-4216-4E01-970D-D32F6278847E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoldierWatcher.Service.Client", "SoldierWatcher.Service.Client\SoldierWatcher.Service.Client.csproj", "{4B51D83E-BEA3-403C-9836-DFFCAED7DB26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C9DDB89-45CC-46D5-8C80-8A7FC74192F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C9DDB89-45CC-46D5-8C80-8A7FC74192F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C9DDB89-45CC-46D5-8C80-8A7FC74192F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C9DDB89-45CC-46D5-8C80-8A7FC74192F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{948FAFCB-D9B7-449D-8241-4CDD61B87A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{948FAFCB-D9B7-449D-8241-4CDD61B87A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{948FAFCB-D9B7-449D-8241-4CDD61B87A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{948FAFCB-D9B7-449D-8241-4CDD61B87A13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B2011A3-F9CC-458D-B17E-FFAA6C401030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B2011A3-F9CC-458D-B17E-FFAA6C401030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B2011A3-F9CC-458D-B17E-FFAA6C401030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B2011A3-F9CC-458D-B17E-FFAA6C401030}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B51D83E-BEA3-403C-9836-DFFCAED7DB26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B51D83E-BEA3-403C-9836-DFFCAED7DB26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B51D83E-BEA3-403C-9836-DFFCAED7DB26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B51D83E-BEA3-403C-9836-DFFCAED7DB26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{948FAFCB-D9B7-449D-8241-4CDD61B87A13} = {B3F99B69-77B2-4A5A-BEA2-F518F6F59427}
+		{5B2011A3-F9CC-458D-B17E-FFAA6C401030} = {B3F99B69-77B2-4A5A-BEA2-F518F6F59427}
+		{4B51D83E-BEA3-403C-9836-DFFCAED7DB26} = {E235FFBB-4216-4E01-970D-D32F6278847E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4ACD807-EE92-47AE-BAAF-D196800761F1}
+	EndGlobalSection
+EndGlobal

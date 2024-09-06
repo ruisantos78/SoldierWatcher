@@ -1,0 +1,52 @@
+[
+  {
+    "Id": "c9f4b0b6-94e8-4e7c-8bde-16a9a82807c0",
+    "SoldierId": "f8aab28d-5c3a-4f97-8b6f-f0c4b560f68f",
+    "SensorId": "e1c4d1b3-8e6f-4a65-a3b6-8f89e65b0c9d",
+    "TrainingLocationId": "e9b1c8f0-d10b-4c3e-9a16-5c6de6b6a684",
+    "TrainingInfo": "Morning drills",
+    "Latitude": 0,
+    "Longitude": 0,
+    "SerialNumber": "0000-0000"
+  },
+  {
+    "Id": "a2e1b2c3-77f9-4d69-95a1-6c678c5b8e3d",
+    "SoldierId": "bf77c736-2bda-4b89-9d69-43b1a7c0b7c9",
+    "SensorId": "d3b4f6e2-1a7b-4c85-9e4a-8e91a6d2b9f7",
+    "TrainingLocationId": "e9b1c8f0-d10b-4c3e-9a16-5c6de6b6a684",
+    "TrainingInfo": "Afternoon exercises",
+    "Latitude": 0,
+    "Longitude": 0,
+    "SerialNumber": "1111-1111"
+  },
+  {
+    "Id": "b7e3d4c9-0a4b-41a7-92a3-f4a5d8e6e9c1",
+    "SoldierId": "c44a0f95-0a54-4c6b-b9ee-56b2f40e9f8a",
+    "SensorId": "f52a4d7b-6ef2-4f27-a342-26d6e5738f64",
+    "TrainingLocationId": "e9b1c8f0-d10b-4c3e-9a16-5c6de6b6a684",
+    "TrainingInfo": "Night operations",
+    "Latitude": 0,
+    "Longitude": 0,
+    "SerialNumber": "2222-2222"
+  },
+  {
+    "Id": "d8e1f7b4-6a1b-41f7-a5c5-1f99d7d8e1a5",
+    "SoldierId": "d2a03e6f-7e63-46cc-8a4d-2f607b7a9f47",
+    "SensorId": "c4b44e58-df3e-4e69-a7b4-5a7d9ff4bcd1",
+    "TrainingLocationId": "e9b1c8f0-d10b-4c3e-9a16-5c6de6b6a684",
+    "TrainingInfo": "Survival training",
+    "Latitude": 0,
+    "Longitude": 0,
+    "SerialNumber": "3333-3333"
+  },
+  {
+    "Id": "e5f7b8d9-8b2b-4d91-8f4c-5b2a9c5e2f8b",
+    "SoldierId": "eaa0cda2-24ff-4387-a497-50d527e93f5d",
+    "SensorId": "4f3e7e76-50d5-4b20-897c-76e79c6bb80a",
+    "TrainingLocationId": "e9b1c8f0-d10b-4c3e-9a16-5c6de6b6a684",
+    "TrainingInfo": "Tactical drills",
+    "Latitude": 0,
+    "Longitude": 0,
+    "SerialNumber": "4444-4444"
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "Id": "e1c4d1b3-8e6f-4a65-a3b6-8f89e65b0c9d",
+    "SensorName": "GPS Sensor Alpha",
+    "SensorType": "GPS"
+  },
+  {
+    "Id": "d3b4f6e2-1a7b-4c85-9e4a-8e91a6d2b9f7",
+    "SensorName": "GPS Sensor Beta",
+    "SensorType": "GPS"
+  }
+]
