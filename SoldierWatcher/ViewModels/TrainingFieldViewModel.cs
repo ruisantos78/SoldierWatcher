@@ -63,13 +63,24 @@ public partial class TrainingFieldViewModel : ObservableObject
         UpdateListeners();
     }
 
+    private void OnGeolocationServiceGeolocationUpdated(object? sender, GeolocationEventArgs e)
+    {
+        var soldier = Soldiers?.FirstOrDefault(x => x.SerialNumber == e.SerialNumber);
+        if (soldier is null)
+            return;
+
+        soldier.UpdateGeolocation(e.Latitude, e.Longitude);
+        soldierMarkerRepository.UpdateSoldierLocationAsync(soldier, cancellationTokenSource.Token);
+    }
+
+
     private void ClearListeners()
     {
         var tasks = Soldiers?.Select(x => geolocationService.RemoveListenerAsync(x.SerialNumber))
             .ToArray();
 
         if (tasks is not null && tasks.Length > 0)
-            Task.WaitAll(tasks);    
+            Task.WaitAll(tasks);
     }
 
     private void UpdateListeners()
@@ -79,16 +90,6 @@ public partial class TrainingFieldViewModel : ObservableObject
 
         if (tasks is not null && tasks.Length > 0)
             Task.WaitAll(tasks);
-    }
-
-    private void OnGeolocationServiceGeolocationUpdated(object? sender, GeolocationEventArgs e)
-    {
-        var soldier = Soldiers?.FirstOrDefault(x => x.SerialNumber == e.SerialNumber);
-        if (soldier is null)
-            return;
-
-        soldier.UpdateGeolocation(e.Latitude, e.Longitude);
-        soldierMarkerRepository.UpdateSoldierLocationAsync(soldier, cancellationTokenSource.Token);
     }
 
     private void SetTrainingLocations(Task<IReadOnlyList<TrainingLocation>> task)

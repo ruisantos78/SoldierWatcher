@@ -17,15 +17,15 @@ namespace SoldierWatcher.Views.Controls;
 
 public partial class TrainingMapControl : UserControl
 {
-    public static readonly DependencyProperty LatitudeProperty = DependencyProperty.Register("Latitude", typeof(double), typeof(TrainingMapControl), 
+    public static readonly DependencyProperty LatitudeProperty = DependencyProperty.Register("Latitude", typeof(double), typeof(TrainingMapControl),
         new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsRender, OnLatitudePropertyChanged));
 
     public static readonly DependencyProperty LongitudeProperty = DependencyProperty.Register("Longitude", typeof(double), typeof(TrainingMapControl),
-        new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsRender, OnLongitudePropertyChanged));    
+        new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsRender, OnLongitudePropertyChanged));
 
     public static readonly DependencyProperty ItemSourceProperty = DependencyProperty.Register("ItemSource", typeof(ObservableCollection<SoldierMarkerModel>), typeof(TrainingMapControl),
         new FrameworkPropertyMetadata(new ObservableCollection<SoldierMarkerModel>(), FrameworkPropertyMetadataOptions.AffectsRender, OnItemSourcePropertyChanged));
-    
+
     public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register("SelectedItem", typeof(SoldierMarkerModel), typeof(TrainingMapControl),
         new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedItemPropertyChanged));
 
@@ -48,15 +48,12 @@ public partial class TrainingMapControl : UserControl
     {
         if (d is TrainingMapControl mapControl)
         {
-            if (e.OldValue is ObservableCollection<SoldierMarkerModel> oldModels)
-                oldModels.CollectionChanged -= mapControl.OnItemsSourceCollectionChanged;
-            
+            var oldModel = e.OldValue as ObservableCollection<SoldierMarkerModel>;
             if (e.NewValue is ObservableCollection<SoldierMarkerModel> newModels)
             {
-                mapControl.OnItemSourceChanged(newModels);
-                newModels.CollectionChanged -= mapControl.OnItemsSourceCollectionChanged;
+                mapControl.OnItemSourceChanged(oldModel, newModels);
             }
-        }            
+        }
     }
 
     private static void OnSelectedItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -106,8 +103,8 @@ public partial class TrainingMapControl : UserControl
 
     private void InitalizeMap()
     {
-        gmapControl.MapProvider = GMapProviders.BingOSMap;        
-        
+        gmapControl.MapProvider = GMapProviders.BingOSMap;
+
         gmapControl.MinZoom = 2;
         gmapControl.MaxZoom = 22;
         gmapControl.Zoom = 18;
@@ -127,9 +124,16 @@ public partial class TrainingMapControl : UserControl
         gmapControl.Position = new PointLatLng(Latitude, longitude);
     }
 
-    private void OnItemSourceChanged(ObservableCollection<SoldierMarkerModel> models)
+    private void OnItemSourceChanged(ObservableCollection<SoldierMarkerModel>? oldModels, ObservableCollection<SoldierMarkerModel> newModels)
     {
-        AddMarkers(models);
+        if (oldModels is not null)
+        {
+            oldModels.CollectionChanged -= OnItemsSourceCollectionChanged;
+            RemoveMarkers(oldModels);
+        }
+
+        AddMarkers(newModels);
+        newModels.CollectionChanged += OnItemsSourceCollectionChanged;
     }
 
     private void OnItemsSourceCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -161,7 +165,7 @@ public partial class TrainingMapControl : UserControl
             marker.Shape.Visibility = model.IsChecked ? Visibility.Visible : Visibility.Hidden;
     }
 
-    private  void OnMarkerGeolocationChanged(object? sender, EventArgs e)
+    private void OnMarkerGeolocationChanged(object? sender, EventArgs e)
     {
         if (sender is not SoldierMarkerModel model)
             return;
@@ -184,11 +188,11 @@ public partial class TrainingMapControl : UserControl
             return;
         }
 
-        var marker = gmapControl.Markers.FirstOrDefault(m => m.Tag == model);        
+        var marker = gmapControl.Markers.FirstOrDefault(m => m.Tag == model);
         gmapControl.Markers.ToList().ForEach(m => m.ZIndex = m == marker ? 100 : 0);
         if (marker?.Shape is RadioButton button)
         {
-            button.IsChecked = true;            
+            button.IsChecked = true;
         }
     }
 
@@ -218,9 +222,9 @@ public partial class TrainingMapControl : UserControl
             shape.Checked += OnMarkerSelected;
             model.IsCheckedChanged += OnMarkerIsCheckedChanged;
             model.GeolocationChanged += OnMarkerGeolocationChanged;
-        }        
+        }
     }
-   
+
     private void RemoveMarkers(System.Collections.IList? models)
     {
         if (models is null)
@@ -232,7 +236,7 @@ public partial class TrainingMapControl : UserControl
 
             var marker = gmapControl.Markers.FirstOrDefault(m => m.Tag == model);
             if (marker is not null)
-                gmapControl.Markers.Remove(marker);            
+                gmapControl.Markers.Remove(marker);
         }
     }
 
@@ -251,9 +255,9 @@ public partial class TrainingMapControl : UserControl
             return;
         }
 
-        var duration = 100.0; 
-        var stepInterval = 5; 
-        var stepCount = duration / stepInterval; 
+        var duration = 100.0;
+        var stepInterval = 5;
+        var stepCount = duration / stepInterval;
         var currentStep = 0;
 
         var timer = new DispatcherTimer
@@ -266,15 +270,15 @@ public partial class TrainingMapControl : UserControl
             if (currentStep < stepCount)
             {
                 currentStep++;
-                double t = (double)currentStep / stepCount; 
+                double t = (double)currentStep / stepCount;
                 var currentLat = start.Lat + t * (end.Lat - start.Lat);
                 var currentLng = start.Lng + t * (end.Lng - start.Lng);
                 marker.Position = new PointLatLng(currentLat, currentLng);
             }
             else
-            {                
+            {
                 timer.Stop();
-                marker.Position = end; 
+                marker.Position = end;
             }
         };
 

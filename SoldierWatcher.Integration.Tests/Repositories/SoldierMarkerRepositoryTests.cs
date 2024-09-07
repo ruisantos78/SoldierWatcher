@@ -23,7 +23,7 @@ public class SoldierMarkerRepositoryTests
         services = builder.BuildServiceProvider();
     }
 
-    [Fact]
+    [Fact(DisplayName = "Should get soldiers by training location async with success")]
     public async Task ShouldGetSoldiersByTrainingLocationAsyncWithSuccess()
     {
         // Arrange
@@ -34,8 +34,6 @@ public class SoldierMarkerRepositoryTests
         trainingLocation.Should().NotBeNull();
 
         var repository = services.GetRequiredService<ISoldierMarkerRepository>();
-
-        // var expectedSoldier = new Soldier("f8aab28d-5c3a-4f97-8b6f-f0c4b560f68f",)
 
         // Act
         var result = await repository.GetSoldiersByTrainingLocationAsync(trainingLocation!, cancellationTokenSource.Token);

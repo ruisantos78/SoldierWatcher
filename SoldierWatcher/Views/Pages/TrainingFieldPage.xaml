@@ -111,26 +111,23 @@
                         </UniformGrid>
                     </ScrollViewer>
                 </Border>
-                
-                <UniformGrid Columns="1">
-                    <ListBox ItemsSource="{Binding Soldiers}" d:ItemsSource="{d:SampleData}" SelectedItem="{Binding SelectedSoldier}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="5"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
 
-                                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
-                                    <TextBlock Grid.Column="2" Text="{Binding SoldierName}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                <ListBox ItemsSource="{Binding Soldiers}" d:ItemsSource="{d:SampleData}" SelectedItem="{Binding SelectedSoldier}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
 
-                </UniformGrid>
+                                <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                <TextBlock Grid.Column="2" Text="{Binding SoldierName}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </DockPanel>
         </Border>
     </Grid>

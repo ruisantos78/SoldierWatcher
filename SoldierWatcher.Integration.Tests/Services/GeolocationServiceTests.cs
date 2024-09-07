@@ -24,7 +24,7 @@ public class GeolocationServiceTests
         var geolocationService = services.GetRequiredService<IGeolocationService>();
 
         // Act
-        var action = async () => await geolocationService.ConnectAsync("fake://host", cancellationTokenSource.Token);
+        var action = () => geolocationService.ConnectAsync("fake://host", cancellationTokenSource.Token);
 
         // Assert
         await action.Should().NotThrowAsync();
@@ -37,7 +37,7 @@ public class GeolocationServiceTests
         var geolocationService = services.GetRequiredService<IGeolocationService>();
 
         // Act
-        var action = async () => await geolocationService.GetListenersAsync();
+        var action = () => geolocationService.GetListenersAsync();
 
         // Assert
         await action.Should().NotThrowAsync();
@@ -55,7 +55,7 @@ public class GeolocationServiceTests
         listeners.Should().NotContainKey(serialNumber);
 
         // Act
-        var action = async () => await geolocationService.AddListenerAsync(serialNumber);
+        var action = () => geolocationService.AddListenerAsync(serialNumber);
 
         // Assert
         await action.Should().NotThrowAsync();
@@ -78,7 +78,7 @@ public class GeolocationServiceTests
         await geolocationService.AddListenerAsync(serialNumber); ;
 
         // Act
-        var action = async () => await geolocationService.RemoveListenerAsync(serialNumber);
+        var action = () => geolocationService.RemoveListenerAsync(serialNumber);
 
         // Assert
         await action.Should().NotThrowAsync();
