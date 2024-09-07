@@ -1,7 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
-using SoldierWatcher.Views.Pages;
-using System.Windows.Controls;
 
 namespace SoldierWatcher.ViewModels;
 

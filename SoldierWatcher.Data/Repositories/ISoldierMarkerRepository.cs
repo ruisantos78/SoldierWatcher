@@ -4,6 +4,6 @@ namespace SoldierWatcher.Data.Repositories;
 
 public interface ISoldierMarkerRepository
 {
-    Task<IReadOnlyList<SoldierMarker>> GetSoldiersByTrainingLocation(TrainingLocation trainingLocation, CancellationToken cancellationToken = default);
-    Task UpdateSoldierLocation(SoldierMarker soldierMarker, CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<SoldierMarker>> GetSoldiersByTrainingLocationAsync(TrainingLocation trainingLocation, CancellationToken cancellationToken = default);
+    Task UpdateSoldierLocationAsync(SoldierMarker soldierMarker, CancellationToken cancellationToken = default);
 }

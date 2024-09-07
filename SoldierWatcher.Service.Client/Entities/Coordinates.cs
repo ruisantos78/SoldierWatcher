@@ -1,11 +1,11 @@
-﻿namespace SoldierWatcher.Service.Client.Services.Structs;
+﻿namespace SoldierWatcher.Service.Client.Entities;
 
-internal struct Coordinates
+public struct Coordinates
 {
     public static readonly Coordinates Empty = new Coordinates(0, 0);
 
-    public double Latitude { get; set; }
-    public double Longitude { get; set; }
+    public double Latitude { get; internal set; }
+    public double Longitude { get; internal set; }
 
     public Coordinates(double latitude, double longitude)
     {

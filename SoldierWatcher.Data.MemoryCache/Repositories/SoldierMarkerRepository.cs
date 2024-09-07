@@ -23,13 +23,13 @@ internal class SoldierMarkerRepository : ISoldierMarkerRepository
         this.trainingLocationsRepository = trainingLocationsRepository;
     }
 
-    public async Task UpdateSoldierLocation(SoldierMarker soldierMarker, CancellationToken cancellationToken = default)
+    public async Task UpdateSoldierLocationAsync(SoldierMarker soldierMarker, CancellationToken cancellationToken = default)
     {
         await File.AppendAllTextAsync(Path.Combine(Environment.CurrentDirectory, $"{soldierMarker.Id}.log"), 
             $"[{DateTime.Now}] {soldierMarker.Latitude}, {soldierMarker.Longitude}\n", cancellationToken);
     }
 
-    public async Task<IReadOnlyList<SoldierMarker>> GetSoldiersByTrainingLocation(TrainingLocation trainingLocation, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<SoldierMarker>> GetSoldiersByTrainingLocationAsync(TrainingLocation trainingLocation, CancellationToken cancellationToken = default)
     {
         var entities = await GetTrainingLocationsEntitiesAsync(cancellationToken);
 

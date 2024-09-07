@@ -1,6 +1,6 @@
-﻿using SoldierWatcher.Service.Client.EventHandlers;
+﻿using SoldierWatcher.Service.Client.Entities;
+using SoldierWatcher.Service.Client.EventHandlers;
 using SoldierWatcher.Service.Client.Interfaces;
-using SoldierWatcher.Service.Client.Services.Structs;
 using System.Collections.Concurrent;
 
 namespace SoldierWatcher.Service.Client.Services;
@@ -17,18 +17,26 @@ internal class GeolocationService : IGeolocationService
         return Task.CompletedTask;
     }
 
-    public void AddListener(string serialNumber)
+    public Task<IReadOnlyDictionary<string, Coordinates>> GetListenersAsync()
+    {
+        return Task.FromResult<IReadOnlyDictionary<string, Coordinates>>(listeners);
+    }
+
+    public Task AddListenerAsync(string serialNumber)
     {
         if (string.IsNullOrEmpty(serialNumber))
-            return;
+            return Task.CompletedTask;
 
         if (!listeners.ContainsKey(serialNumber))
             listeners.TryAdd(serialNumber, new Coordinates(38.7223, -9.1393));
+
+        return Task.CompletedTask;
     }
 
-    public void RemoveListener(string serialNumber)
+    public Task RemoveListenerAsync(string serialNumber)
     {
         listeners.TryRemove(serialNumber, out _);
+        return Task.CompletedTask;
     }
 
     private async Task SimulateUpdatesServiceAsync(CancellationToken cancellationToken)

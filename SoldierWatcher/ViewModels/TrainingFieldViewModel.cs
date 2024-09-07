@@ -48,9 +48,8 @@ public partial class TrainingFieldViewModel : ObservableObject
 
 
     async partial void OnSelectedTrainingLocationChanged(TrainingLocation? value)
-    {
-        // Remove listners from soldier fro another location
-        Soldiers?.ToList().ForEach(x => geolocationService.RemoveListener(x.SerialNumber));
+    {        
+        ClearListeners();
 
         if (value is null)
         {
@@ -58,9 +57,28 @@ public partial class TrainingFieldViewModel : ObservableObject
             return;
         }
 
-        var soldiers = await soldierMarkerRepository.GetSoldiersByTrainingLocation(value, cancellationTokenSource.Token);
+        var soldiers = await soldierMarkerRepository.GetSoldiersByTrainingLocationAsync(value, cancellationTokenSource.Token);
         Soldiers = new(soldiers.Select(x => new SoldierMarkerModel(x)));
-        Soldiers?.ToList().ForEach(x => geolocationService.AddListener(x.SerialNumber));
+
+        UpdateListeners();
+    }
+
+    private void ClearListeners()
+    {
+        var tasks = Soldiers?.Select(x => geolocationService.RemoveListenerAsync(x.SerialNumber))
+            .ToArray();
+
+        if (tasks is not null && tasks.Length > 0)
+            Task.WaitAll(tasks);    
+    }
+
+    private void UpdateListeners()
+    {
+        var tasks = Soldiers?.Select(x => geolocationService.AddListenerAsync(x.SerialNumber))
+            .ToArray();
+
+        if (tasks is not null && tasks.Length > 0)
+            Task.WaitAll(tasks);
     }
 
     private void OnGeolocationServiceGeolocationUpdated(object? sender, GeolocationEventArgs e)
@@ -70,7 +88,7 @@ public partial class TrainingFieldViewModel : ObservableObject
             return;
 
         soldier.UpdateGeolocation(e.Latitude, e.Longitude);
-        soldierMarkerRepository.UpdateSoldierLocation(soldier, cancellationTokenSource.Token);
+        soldierMarkerRepository.UpdateSoldierLocationAsync(soldier, cancellationTokenSource.Token);
     }
 
     private void SetTrainingLocations(Task<IReadOnlyList<TrainingLocation>> task)

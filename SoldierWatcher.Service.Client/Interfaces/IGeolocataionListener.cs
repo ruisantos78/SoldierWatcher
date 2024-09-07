@@ -1,4 +1,5 @@
-﻿using SoldierWatcher.Service.Client.EventHandlers;
+﻿using SoldierWatcher.Service.Client.Entities;
+using SoldierWatcher.Service.Client.EventHandlers;
 
 namespace SoldierWatcher.Service.Client.Interfaces;
 
@@ -8,6 +9,7 @@ public interface IGeolocationService
 
     Task ConnectAsync(string host, CancellationToken cancellationToken = default);
 
-    void AddListener(string serialNumber);
-    void RemoveListener(string serialNumber);    
+    Task AddListenerAsync(string serialNumber);
+    Task RemoveListenerAsync(string serialNumber);
+    Task<IReadOnlyDictionary<string, Coordinates>> GetListenersAsync();
 }
