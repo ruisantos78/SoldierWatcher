@@ -39,6 +39,7 @@ internal class GeolocationService : IGeolocationService
         return Task.CompletedTask;
     }
 
+
     private async Task SimulateUpdatesServiceAsync(CancellationToken cancellationToken)
     {
         while (!cancellationToken.IsCancellationRequested)
@@ -61,7 +62,6 @@ internal class GeolocationService : IGeolocationService
     {
         GeolocationUpdated?.Invoke(this, new GeolocationEventArgs(serialNumber, newCoordinates.Latitude, newCoordinates.Longitude));
     }
-
 
     private static Coordinates GenerateRandomCoordinates(Coordinates current)
     {

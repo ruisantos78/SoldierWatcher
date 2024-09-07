@@ -1,17 +1,12 @@
 ﻿using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsPresentation;
-using SoldierWatcher.Data.Entities;
 using SoldierWatcher.Models;
-using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using Duration = System.Windows.Duration;
 
 namespace SoldierWatcher.Views.Controls;
 
@@ -199,12 +194,10 @@ public partial class TrainingMapControl : UserControl
 
     private void AddMarkers(System.Collections.IList? models)
     {
-        gmapControl.Markers.Clear();
-
         if (models is null)
             return;
 
-        foreach (var model in models.OfType<SoldierMarkerModel>())
+        foreach (SoldierMarkerModel model in models)
         {
             var shape = new RadioButton
             {
@@ -230,13 +223,16 @@ public partial class TrainingMapControl : UserControl
         if (models is null)
             return;
 
-        foreach (var model in models.OfType<SoldierMarkerModel>())
+        foreach (SoldierMarkerModel model in models)
         {
+            model.GeolocationChanged -= OnMarkerGeolocationChanged;
             model.IsCheckedChanged -= OnMarkerIsCheckedChanged;
 
             var marker = gmapControl.Markers.FirstOrDefault(m => m.Tag == model);
             if (marker is not null)
+            {
                 gmapControl.Markers.Remove(marker);
+            }
         }
     }
 
@@ -255,14 +251,17 @@ public partial class TrainingMapControl : UserControl
             return;
         }
 
-        var duration = 100.0;
+        var duration = 150;
         var stepInterval = 5;
         var stepCount = duration / stepInterval;
         var currentStep = 0;
 
-        var timer = new DispatcherTimer
+        var stepLat = (end.Lat - start.Lat) / stepCount;
+        var stepLng = (end.Lng - start.Lng) / stepCount;
+
+        var timer = new DispatcherTimer(DispatcherPriority.Render)
         {
-            Interval = TimeSpan.FromMilliseconds(stepInterval)
+            Interval = TimeSpan.FromMilliseconds(stepInterval),            
         };
 
         timer.Tick += (s, e) =>
@@ -270,10 +269,10 @@ public partial class TrainingMapControl : UserControl
             if (currentStep < stepCount)
             {
                 currentStep++;
-                double t = (double)currentStep / stepCount;
-                var currentLat = start.Lat + t * (end.Lat - start.Lat);
-                var currentLng = start.Lng + t * (end.Lng - start.Lng);
-                marker.Position = new PointLatLng(currentLat, currentLng);
+                marker.Position = new PointLatLng(
+                    start.Lat + currentStep * stepLat,
+                    start.Lng + currentStep * stepLng
+                );
             }
             else
             {
@@ -284,5 +283,4 @@ public partial class TrainingMapControl : UserControl
 
         timer.Start();
     }
-
 }

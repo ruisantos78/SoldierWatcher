@@ -1,13 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SoldierWatcher.Data.Entities;
 using SoldierWatcher.Data.MemoryCache;
 using SoldierWatcher.Data.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoldierWatcher.Integration.Tests.Repositories;
 
