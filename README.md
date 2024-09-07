@@ -26,6 +26,9 @@ The system emphasizes optimized performance, particularly when handling a substa
 - High-performance updates, designed to handle numerous markers and frequent position changes efficiently.
 - Data storage: Soldier movements and details are stored in a database for future analysis.
 
+## Diagrams
+- [ERD Diagram](https://github.com/ruisantos78/SoldierWatcher/wiki/ERD-Diagram)
+
 ## Technologies Used
 
 - **WPF**: For building the user interface and handling the main application logic.
